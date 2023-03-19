@@ -32,9 +32,16 @@ app.use("/",authRouter)
 app.use("/user",userRouter)
 app.use("/hotel",hotelRouter)
 app.use("/room",roomRouter)
+
+app.use((err, req, res, next) => {
+    console.log("Error Occured", err.message)
+    return res.send("Error Occured: " + err.message)
+})
+
 app.get("*", (req,res)=>{
     res.send("<h1>Sorry! Not able to locate.</h1>")
 })
+
 
 app.listen(8000, () => {
   console.log("Listening to port 8000")

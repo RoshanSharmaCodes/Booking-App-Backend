@@ -26,7 +26,7 @@ mongoose.connection.on("connected", () => {
     console.log("Connection Completed")
 })
 
-
+app.use(express.json())
 //APIs Middleware
 app.use("/",authRouter)
 app.use("/user",userRouter)

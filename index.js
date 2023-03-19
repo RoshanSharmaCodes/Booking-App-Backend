@@ -2,7 +2,13 @@ const express = require("express")
 const app = express()
 require("dotenv").config()
 const mongoose = require("mongoose")
+const authRouter = require("./Routes/auth")
+const roomRouter = require("./Routes/rooms")
+const hotelRouter = require("./Routes/hotels")
+const userRouter = require("./Routes/users")
 
+
+//MongoDB configuration
 const connectMongoDB = async () => {
   try {
     mongoose.connect(process.env.MONGODB_LINK)
@@ -20,8 +26,14 @@ mongoose.connection.on("connected", () => {
     console.log("Connection Completed")
 })
 
-app.get("/", (req, res) => {
-  res.json({ success: true })
+
+//APIs Middleware
+app.use("/",authRouter)
+app.use("/user",userRouter)
+app.use("/hotel",hotelRouter)
+app.use("/room",roomRouter)
+app.get("*", (req,res)=>{
+    res.send("<h1>Sorry! Not able to locate.</h1>")
 })
 
 app.listen(8000, () => {

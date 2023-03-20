@@ -6,6 +6,7 @@ const authRouter = require("./Routes/auth")
 const roomRouter = require("./Routes/rooms")
 const hotelRouter = require("./Routes/hotels")
 const userRouter = require("./Routes/users")
+const cookieParser = require("cookie-parser")
 
 
 //MongoDB configuration
@@ -26,6 +27,7 @@ mongoose.connection.on("connected", () => {
     console.log("Connection Completed")
 })
 
+app.use(cookieParser())
 app.use(express.json())
 //APIs Middleware
 app.use("/",authRouter)

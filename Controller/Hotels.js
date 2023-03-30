@@ -1,4 +1,4 @@
-const HotelSchema = require('../Schema/Hotel')
+const HotelSchema = require("../Schema/Hotel")
 
 const DeleteHotel = async (req, res, next) => {
   try {
@@ -42,14 +42,13 @@ const GetHotelById = async (req, res, next) => {
 }
 
 const GetAllHotels = async (req, res, next) => {
-    try {
-        const allHotels = await HotelSchema.find()
-        res.sendStatus(200)
-      } catch (err) {
-        err.message = "Could Not Find All Hotel"
-        next(err)
-      }
+  try {
+    const allHotels = await HotelSchema.find()
+    res.sendStatus(200)
+  } catch (err) {
+    err.message = "Could Not Find All Hotel"
+    next(err)
+  }
 }
 
-
-module.exports = {SaveHotel,UpdateHotel,DeleteHotel,GetAllHotels,GetHotelById}
+module.exports = { SaveHotel, UpdateHotel, DeleteHotel, GetAllHotels, GetHotelById }
